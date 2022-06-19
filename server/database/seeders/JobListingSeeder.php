@@ -31,11 +31,11 @@ class JobListingSeeder extends Seeder
                 "position" => $value->position,
                 "role" => $value->role,
                 "level" => $value->level,
-                "postedAt" => $value->postedAt,
+                "posted_at" => $value->postedAt,
                 "contract" => $value->contract,
                 "location" => $value->location,
-                "languages" => json_encode($value->languages),
-                "tools" => json_encode($value->tools),
+                "languages" => implode(',', $value->languages),
+                "tools" => implode(',', $value->tools),
             ]);
         }
     }

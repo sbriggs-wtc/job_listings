@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string("position");
             $table->string("role");
             $table->string("level");
-            $table->string("postedAt");
+            $table->string("posted_at");
             $table->string("contract");
             $table->string("location");
             $table->string("languages");

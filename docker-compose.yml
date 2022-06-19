@@ -1,7 +1,8 @@
-version: "2"
+version: "3"
 
 services:
   mariadb:
+    container_name: job_listings_mariadb
     image: docker.io/bitnami/mariadb:10.6
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
@@ -10,6 +11,7 @@ services:
       - MARIADB_DATABASE=job_listings
 
   server:
+    container_name: job_listings_server
     image: docker.io/bitnami/laravel:9
     ports:
       - "8000:8000"
@@ -19,6 +21,27 @@ services:
       - DB_USERNAME=admin
       - DB_DATABASE=job_listings
     volumes:
-      - "./job_listings:/app"
+      - "./server:/app"
     depends_on:
       - mariadb
+  phpmyadmin:
+    container_name: job_listings_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8081:80
+    environment:
+      - MYSQL_USERNAME=admin
+      - MYSQL_ROOT_PASSWORD=""
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+      #- PMA_USER=admin
+      #- PMA_PASSWORD=""
+    depends_on:
+      - mariadb
+
+  client:
+    container_name: job_listings_client
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
