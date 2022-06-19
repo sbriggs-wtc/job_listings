@@ -6,20 +6,29 @@ A ReactJS + Laravel + MariaDB job listings application with some dummy data.
 
 ## Installation:
 
-1. Build and run the containers:
+You will need to have PHP version ^8.0.2 installed
+
+1. Install dependencies (from the server/ directory):
+
+```sh
+    composer update
+```
+
+2. Build and run the containers:
 
 ```sh
     docker-compose up --build -d
 ```
 
-2. Give the containers about 30 seconds after starting up and then run the setup script. This will run the migrations and seed the database.
+3. Give the containers about 30 seconds after starting up and then run the setup script. This will run the migrations and seed the database.
 
 ```sh
+    cd ..
     sh setup.sh
 ```
 
-3. Navigate to http://localhost:3000/ in your browser.
-4. To remove the containers:
+4. Navigate to http://localhost:3000/ in your browser.
+5. To remove the containers:
 
 ```sh
     docker-compose down
